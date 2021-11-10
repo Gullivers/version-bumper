@@ -57,7 +57,13 @@ function main() {
             let options = yield (0, options_1.getBumperOptions)();
             let branch = yield(0,options_1.getBranch)(options);
             core.info("Got branch "+branch);
-            yield new Git_1.default().checkoutBranch(branch);
+            try{
+                yield new Git_1.default().checkoutBranch(branch);
+            }
+            catch (e) {
+                core.error("Failed to checkout branch: "+e.message);
+                return FAILURE;
+            }
             core.info("Switched branch "+branch);
             let state = yield (0, options_1.getBumperState)(options);
             if (state.curVersion === state.newVersion) {

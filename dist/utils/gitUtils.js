@@ -96,8 +96,9 @@ function commit(commitOptions, gitInterface) {
 }
 exports.commit = commit;
 
-function getLatestTag(){
+function getLatestTag(options){
     return __awaiter(this, void 0, void 0, function* () {
+        let git = yield configureGit(options);
         yield git.getLatestTag();
     });
 }
