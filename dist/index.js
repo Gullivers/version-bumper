@@ -63,7 +63,6 @@ function main() {
                 return SUCCESS;
             }
             yield bump(state);
-            yield new Git_1.default().checkoutBranch(state.branch);
             const GIT_OPTIONS = {
                 userName: 'version-bumper',
                 userEmail: 'bumper@boringday.co',
