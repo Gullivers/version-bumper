@@ -124,6 +124,7 @@ function getCurVersion(options,branch) {
         let { path, line } = options.versionFile;
         let version = yield (0, git_1.getLatestTag)(options,branch);
         return version;
+        /*
         const schemeRegExp = getSchemeRegex(options);
         console.info("scheme regExp: ", schemeRegExp);
         const regExp = addPrefixAndSuffixRecognition(schemeRegExp, options);
@@ -174,6 +175,7 @@ function getCurVersion(options,branch) {
             finally { if (e_1) throw e_1.error; }
         }
         throw new Error(`No match found in file. Unable to identify current version number.`);
+        */
     });
 }
 exports.getCurVersion = getCurVersion;
@@ -235,6 +237,7 @@ function getApplicableSuffix(rules) {
  */
 function getTag(options, trigger, branch) {
     const rules = getRules(options, trigger, branch);
+    core.info('get tag');
     return rules.reduce((pre, cur) => pre || (cur.tag || false), false);
 }
 exports.getTag = getTag;
@@ -337,6 +340,7 @@ exports.getSuffixes = getSuffixes;
  */
 function versionMapToString(options, map) {
     (0, options_1.normalizeOptions)(options);
+    core.info('versionMaptoStringrunning');
     let optional = getOptional(options.schemeDefinition), opKeys = Object.keys(optional), orderedItems = options.schemeDefinition.split(/[.,;:\-_><\]\[]+/g).filter((tag) => tag !== ""), version = options.schemeDefinition.replace(/[\[\]]+/g, ''), //remove the optional brackets
     // flags if the tags can be omitted if optional (goes from the back to the front. If the backmost tag is not 0 then it cant be omitted and all that follow must also be put
     // e.g. if the scheme is major[.minor][.build],
@@ -371,13 +375,21 @@ exports.versionMapToString = versionMapToString;
  */
 function bumpVersion(options, trigger, branch) {
     return __awaiter(this, void 0, void 0, function* () {
+        core.info('bumpVersion');
         const curVersion = yield getCurVersion(options,branch);
+        core.info('gotCurVersion');
         const rules = getRules(options, trigger, branch);
+        core.info('gotRules');
         const resetItems = getResetItems(rules);
+        core.info('getReset');
         const bumpItems = getBumpItems(rules);
+        core.info('gotBump');
         const prefix = getApplicablePrefix(rules);
+        core.info('gotApplicablePrefix');
         const suffix = getApplicableSuffix(rules);
+        core.info('gotApplicableSuffix');
         const versionMap = getVersionMap(options, rules, curVersion);
+        core.info('gotVersionMap');
         for (let item of resetItems)
             versionMap[item] = 0; // reset items
         for (let item of bumpItems)
