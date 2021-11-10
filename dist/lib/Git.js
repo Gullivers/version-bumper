@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const exec_1 = require("@actions/exec");
+const {gitDescribe, gitDescribeSync} = require('git-describe');
 class Git {
     constructor(params) {
         var _a;
@@ -103,9 +104,15 @@ class Git {
 
     getLatestTag(branch){
         return __awaiter(this, void 0, void 0, function* () {
+            return gitDescribeSync({
+                customArguments: [branch, "--abbrev=0","--tags"]
+            });
+            /*
             yield (0, exec_1.exec)('git', ['describe',branch, "--abbrev=0","--tags"], this.execOptions);
             return this;
+            */
         });
+        
     }
     /**
      * Push branch to remote origin if set up

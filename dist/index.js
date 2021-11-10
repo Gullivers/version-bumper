@@ -56,7 +56,7 @@ function main() {
         try {
             let options = yield (0, options_1.getBumperOptions)();
             let targetBranch = yield (0, options_1.getBranch)();
-            var curVersion = yield new Git_1.default().getLatestTag(targetBranch);
+            var curVersion = (yield new Git_1.default().getLatestTag(targetBranch)).tag;
             core.info('Get bumper state');
             let state = yield (0, options_1.getBumperState)(options,curVersion);
             if (state.curVersion === state.newVersion) {
