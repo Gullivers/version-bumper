@@ -96,10 +96,10 @@ function commit(commitOptions, gitInterface) {
 }
 exports.commit = commit;
 
-function getLatestTag(options){
+function getLatestTag(options,branch){
     return __awaiter(this, void 0, void 0, function* () {
         let git = yield configureGit(options);
-        yield git.getLatestTag();
+        yield git.getLatestTag(branch);
     });
 }
 exports.getLatestTag = getLatestTag;

@@ -118,11 +118,11 @@ function escapeRegExp(string) {
  *  TL;DR: returns the version found on the specified line or the first match found.
  * @param options
  */
-function getCurVersion(options) {
+function getCurVersion(options,branch) {
     var e_1, _a;
     return __awaiter(this, void 0, void 0, function* () {
         let { path, line } = options.versionFile;
-        let version = yield (0, git_1.getLatestTag)(options);
+        let version = yield (0, git_1.getLatestTag)(options,branch);
         return version;
         const schemeRegExp = getSchemeRegex(options);
         console.info("scheme regExp: ", schemeRegExp);
@@ -371,7 +371,7 @@ exports.versionMapToString = versionMapToString;
  */
 function bumpVersion(options, trigger, branch) {
     return __awaiter(this, void 0, void 0, function* () {
-        const curVersion = yield getCurVersion(options);
+        const curVersion = yield getCurVersion(options,branch);
         const rules = getRules(options, trigger, branch);
         const resetItems = getResetItems(rules);
         const bumpItems = getBumpItems(rules);
