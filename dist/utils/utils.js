@@ -43,7 +43,7 @@ const fs = __importStar(require("fs"));
 const readline = __importStar(require("readline"));
 const regExpParser_1 = require("./regExpParser");
 const options_1 = require("./options");
-const Git_1 = __importDefault(require("../lib/Git"));
+const git_1 = require("./gitUtils.js");
 const isRuleApplicable_1 = __importDefault(require("../rules/isRuleApplicable"));
 /**
  * Verifies that the trigger event is acceptable

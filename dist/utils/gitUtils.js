@@ -95,6 +95,10 @@ function commit(commitOptions, gitInterface) {
     });
 }
 exports.commit = commit;
+
+function getLatestTag(){
+    yield git.getLatestTag();
+}
 /**
  * Commit and push all changed to the remote github repository
  * @param {CommitOptions} options

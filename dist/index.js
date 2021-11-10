@@ -54,13 +54,13 @@ function main() {
             return FAILURE;
         }
         try {
+            yield new Git_1.default().checkoutBranch(state.branch);
             let options = yield (0, options_1.getBumperOptions)();
             let state = yield (0, options_1.getBumperState)(options);
             if (state.curVersion === state.newVersion) {
                 core.info('No bump rules applicable');
                 return SUCCESS;
             }
-            yield new Git_1.default().checkoutBranch(state.branch);
             yield bump(state);
             const GIT_OPTIONS = {
                 userName: 'version-bumper',
