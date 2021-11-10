@@ -273,9 +273,9 @@ exports.getBranch = getBranch;
  * Get state variables
  * @param options
  */
-function getBumperState(options) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const trigger = getTrigger(), branch = getBranchFromTrigger(trigger), skip = getSkipOption(options), schemeRegExp = (0, utils_1.getSchemeRegex)(options), schemeDefinition = getSchemeDefinition(options), curVersion = yield (0, utils_1.getCurVersion)(options), tag = (0, utils_1.getTag)(options, trigger, branch), newVersion = yield (0, utils_1.bumpVersion)(options, trigger, branch), files = getFiles(options);
+function getBumperState(options,currVersion) {
+    return __awaiter(this, void 0, void 0, function* () { //yield (0, utils_1.getCurVersion)(options)
+        const trigger = getTrigger(), branch = getBranchFromTrigger(trigger), skip = getSkipOption(options), schemeRegExp = (0, utils_1.getSchemeRegex)(options), schemeDefinition = getSchemeDefinition(options), curVersion = currVersion , tag = (0, utils_1.getTag)(options, trigger, branch), newVersion = yield (0, utils_1.bumpVersion)(options, trigger, branch), files = getFiles(options);
         const state = {
             curVersion,
             newVersion,

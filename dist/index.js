@@ -55,15 +55,15 @@ function main() {
         }
         try {
             let options = yield (0, options_1.getBumperOptions)();
-            let branch = yield(0,options_1.getBranch)(options);
-            core.info("Got branch "+branch);
-            let state = yield (0, options_1.getBumperState)(options);
+            let targetBranch = yield (0, options_1.getBranch)();
+            var curVersion = yield new Git_1.default().getLatestTag(targetBranch);
+            let state = yield (0, options_1.getBumperState)(options,curVersion);
             if (state.curVersion === state.newVersion) {
                 core.info('No bump rules applicable');
                 return SUCCESS;
             }
             yield bump(state);
-                yield new Git_1.default().checkoutBranch(state.branch);
+            yield new Git_1.default().checkoutBranch(state.branch);
             const GIT_OPTIONS = {
                 userName: 'version-bumper',
                 userEmail: 'bumper@boringday.co',
