@@ -99,6 +99,7 @@ exports.commit = commit;
 function getLatestTag(options,branch){
     return __awaiter(this, void 0, void 0, function* () {
         let git = yield configureGit(options);
+        yield get.fetchTags();
         yield git.getLatestTag(branch);
     });
 }

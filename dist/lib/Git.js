@@ -94,6 +94,13 @@ class Git {
         });
     }
 
+    fetchTags(){
+        return __awaiter(this, void 0, void 0, function* () {
+            yield (0, exec_1.exec)('git', ['fetch',"--tags"], this.execOptions);
+            return this;
+        });
+    }
+
     getLatestTag(branch){
         return __awaiter(this, void 0, void 0, function* () {
             yield (0, exec_1.exec)('git', ['describe',branch, "--abbrev=0","--tags"], this.execOptions);
