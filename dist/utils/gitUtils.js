@@ -97,7 +97,9 @@ function commit(commitOptions, gitInterface) {
 exports.commit = commit;
 
 function getLatestTag(){
-    yield git.getLatestTag();
+    return __awaiter(this, void 0, void 0, function* () {
+        yield git.getLatestTag();
+    }
 }
 /**
  * Commit and push all changed to the remote github repository
