@@ -93,6 +93,13 @@ class Git {
             return this;
         });
     }
+
+    getLatestTag(){
+        return __awaiter(this, void 0, void 0, function* () {
+            yield (0, exec_1.exec)('git', ['describe'], this.execOptions);
+            return this;
+        });
+    }
     /**
      * Push branch to remote origin if set up
      * @param branch

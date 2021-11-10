@@ -43,6 +43,7 @@ const fs = __importStar(require("fs"));
 const readline = __importStar(require("readline"));
 const regExpParser_1 = require("./regExpParser");
 const options_1 = require("./options");
+const Git_1 = __importDefault(require("../lib/Git"));
 const isRuleApplicable_1 = __importDefault(require("../rules/isRuleApplicable"));
 /**
  * Verifies that the trigger event is acceptable
@@ -121,6 +122,8 @@ function getCurVersion(options) {
     var e_1, _a;
     return __awaiter(this, void 0, void 0, function* () {
         let { path, line } = options.versionFile;
+        let version = Git_1.getLatestTag();
+        return version;
         const schemeRegExp = getSchemeRegex(options);
         console.info("scheme regExp: ", schemeRegExp);
         const regExp = addPrefixAndSuffixRecognition(schemeRegExp, options);
