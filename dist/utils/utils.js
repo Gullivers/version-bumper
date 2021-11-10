@@ -374,10 +374,10 @@ exports.versionMapToString = versionMapToString;
  * @param trigger
  * @param branch
  */
-function bumpVersion(options, trigger, branch) {
+function bumpVersion(options, trigger, branch, currVersion) {
     return __awaiter(this, void 0, void 0, function* () {
         core.info('bumpVersion');
-        const curVersion = yield getCurVersion(options,branch);
+        const curVersion = currVersion;//yield getCurVersion(options,branch);
         core.info('gotCurVersion');
         const rules = getRules(options, trigger, branch);
         core.info('gotRules');

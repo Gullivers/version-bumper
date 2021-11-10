@@ -276,7 +276,7 @@ exports.getBranch = getBranch;
 function getBumperState(options,currVersion) {
     return __awaiter(this, void 0, void 0, function* () { 
         core.info('variables');//yield (0, utils_1.getCurVersion)(options)
-        const trigger = getTrigger(), branch = getBranchFromTrigger(trigger), skip = getSkipOption(options), schemeRegExp = (0, utils_1.getSchemeRegex)(options), schemeDefinition = getSchemeDefinition(options), curVersion = currVersion , tag = (0, utils_1.getTag)(options, trigger, branch), newVersion = yield (0, utils_1.bumpVersion)(options, trigger, branch), files = getFiles(options);
+        const trigger = getTrigger(), branch = getBranchFromTrigger(trigger), skip = getSkipOption(options), schemeRegExp = (0, utils_1.getSchemeRegex)(options), schemeDefinition = getSchemeDefinition(options), curVersion = currVersion , tag = (0, utils_1.getTag)(options, trigger, branch), newVersion = yield (0, utils_1.bumpVersion)(options, trigger, branch,currVersion), files = getFiles(options);
         const state = {
             curVersion,
             newVersion,
