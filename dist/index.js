@@ -55,7 +55,7 @@ function main() {
         }
         try {
             let options = yield (0, options_1.getBumperOptions)();
-            let branch = yield(0,options_1.getBranch(options));
+            let branch = yield(0,options_1.getBranch)(options);
             yield new Git_1.default().checkoutBranch(branch);
             let state = yield (0, options_1.getBumperState)(options);
             if (state.curVersion === state.newVersion) {
