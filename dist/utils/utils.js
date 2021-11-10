@@ -122,7 +122,7 @@ function getCurVersion(options) {
     var e_1, _a;
     return __awaiter(this, void 0, void 0, function* () {
         let { path, line } = options.versionFile;
-        let version = Git_1.getLatestTag();
+        let version = yield (0, git_1.getLatestTag)(options);
         return version;
         const schemeRegExp = getSchemeRegex(options);
         console.info("scheme regExp: ", schemeRegExp);
