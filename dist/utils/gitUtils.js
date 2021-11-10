@@ -85,9 +85,9 @@ function commit(commitOptions, gitInterface) {
         };
         const git = gitInterface !== null && gitInterface !== void 0 ? gitInterface : new Git_1.default({ execOptions: EXEC_OPTIONS });
         // Add all new modifications and deletions
-        yield git.stageNewModifications();
+        //yield git.stageNewModifications();
         // Commit all staged changes
-        yield git.commitStagedChanges(commitOptions.message);
+        //yield git.commitStagedChanges(commitOptions.message);
         // Tag the commit if tag info is passed
         if (commitOptions.tag)
             yield git.tagLatestCommit(commitOptions.tag);
