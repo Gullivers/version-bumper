@@ -249,6 +249,8 @@ exports.getTag = getTag;
  */
 function getVersionMap(options, rules, version) {
     (0, options_1.normalizeOptions)(options);// get version numbers for all tags
+    core.info(version.toString());
+    core.info(version);
     let versionValues = version.split(/[.,;:\-_><]+/g).filter((tag) => tag !== "");
     let prefix = getApplicablePrefix(rules), suffix = getApplicableSuffix(rules);
     let hasPrefix = true;
