@@ -259,6 +259,13 @@ function getTrigger() {
     }
 }
 exports.getTrigger = getTrigger;
+function getBranch(options){
+    return __awaiter(this, void 0, void 0, function* () {
+        const trigger = getTrigger(), branch = getBranchFromTrigger(trigger);
+        return branch;
+    });
+}
+
 /**
  * Get state variables
  * @param options
