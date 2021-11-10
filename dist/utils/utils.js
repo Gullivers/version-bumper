@@ -240,9 +240,32 @@ exports.getTag = getTag;
  * @param options
  * @param version
  */
-function getVersionMap(options, version) {
-    (0, options_1.normalizeOptions)(options);
-    let versionValues = version.split(/[.,;:\-_><]+/g).filter((tag) => tag !== ""), // get version numbers for all tags
+function getVersionMap(options, rules, version) {
+    (0, options_1.normalizeOptions)(options);// get version numbers for all tags
+    let versionValues = version.split(/[.,;:\-_><]+/g).filter((tag) => tag !== "");
+    let prefix = getApplicablePrefix(rules), suffix = getApplicableSuffix(rules);
+    let hasPrefix = true;
+    let hasSuffix = true;
+    for (var i = 0; i < prefix.length; i++) {
+       let char = prefix[i];
+       if(char !== version[i]){
+        hasPrefix = false;
+        break;
+       }
+    }
+    if(hasPrefix && prefix !== ""){
+        version = version.substring(prefix.length);
+    }
+    for (var i = 0; i < suffix.length; i++) {
+       let char = suffix[suffix.length-i-1];
+       if(char !== version[version.length-i-1]){
+        hasSuffix = false;
+        break;
+       }
+    }
+    if(hasSuffix && suffix !== ""){
+        version = version.substring(0,version.length-suffix.length);
+    }
     tags = options.schemeDefinition.split(/[.,;:\-_><\]\[]+/g).filter((tag) => tag !== ""), map = tags.reduce((pre, cur) => {
         return Object.assign(Object.assign({}, pre), { [cur]: 0 });
     }, {});
@@ -351,7 +374,7 @@ function bumpVersion(options, trigger, branch) {
         const bumpItems = getBumpItems(rules);
         const prefix = getApplicablePrefix(rules);
         const suffix = getApplicableSuffix(rules);
-        const versionMap = getVersionMap(options, curVersion);
+        const versionMap = getVersionMap(options, rules, curVersion);
         for (let item of resetItems)
             versionMap[item] = 0; // reset items
         for (let item of bumpItems)
