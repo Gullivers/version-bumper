@@ -28,7 +28,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getBumperState = exports.getTrigger = exports.normalizeFiles = exports.getSkipOption = exports.getFiles = exports.getBumperOptions = exports.getBranchFromTrigger = exports.getSchemeDefinition = exports.normalizeOptions = void 0;
+exports.getBumperState = exports.getTrigger = exports.normalizeFiles = exports.getSkipOption = exports.getFiles = exports.getBumperOptions = exports.getBranchFromTrigger = exports.getSchemeDefinition = exports.normalizeOptions = exports.getBranch = void 0;
 const definedSchemes = __importStar(require("../schemes.json"));
 const utils_1 = require("./utils");
 const core = __importStar(require("@actions/core"));
@@ -259,12 +259,14 @@ function getTrigger() {
     }
 }
 exports.getTrigger = getTrigger;
+
 function getBranch(options){
     return __awaiter(this, void 0, void 0, function* () {
         const trigger = getTrigger(), branch = getBranchFromTrigger(trigger);
         return branch;
     });
 }
+exports.getBranch = getBranch;
 
 /**
  * Get state variables

@@ -31,7 +31,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.commitAndPush = exports.commit = exports.configureGit = void 0;
+exports.commitAndPush = exports.commit = exports.configureGit = exports.getLatestTag = void 0;
 const core = __importStar(require("@actions/core"));
 const Git_1 = __importDefault(require("../lib/Git"));
 /**
@@ -101,6 +101,7 @@ function getLatestTag(){
         yield git.getLatestTag();
     });
 }
+exports.getLatestTag = getLatestTag;
 /**
  * Commit and push all changed to the remote github repository
  * @param {CommitOptions} options
